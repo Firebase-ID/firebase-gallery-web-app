@@ -1,7 +1,8 @@
 import React, {Component} from "react";
-import {Avatar, Card} from "antd";
+import {Avatar, Card, Modal} from "antd";
 import 'antd/dist/antd.css';
 import { EnvironmentOutlined, EllipsisOutlined, MessageOutlined } from '@ant-design/icons';
+import PositionView from '../PositionView/PositionView';
 
 const { Meta } = Card;
 
@@ -9,8 +10,22 @@ class ProfileCard extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      visible: false
     }
   }
+
+  showModal = () => {
+    this.setState({
+    visible: true,
+    });
+  };
+
+  hideModal = e => {
+    console.log(e);
+    this.setState({
+      visible: false,
+    });
+  };
 
   render() {
     return (
@@ -25,8 +40,8 @@ class ProfileCard extends Component {
           }
           actions={[
             <MessageOutlined key="setting" />,
-            <EnvironmentOutlined key="edit" />,
-            <EllipsisOutlined key="ellipsis" />,
+            <EnvironmentOutlined key="edit" onClick={() => this.showModal()}/>,
+            <EllipsisOutlined key="ellipsis"  />
           ]}
         >
           <Meta
@@ -35,6 +50,15 @@ class ProfileCard extends Component {
             description={this.props.description}
           />
         </Card>
+
+        <Modal 
+          title="Position View"
+          visible={this.state.visible}
+          onOk={this.hideModal}
+          onCancel={this.hideModal}
+        >
+          <PositionView />
+        </Modal>
       </div>
     )
   }

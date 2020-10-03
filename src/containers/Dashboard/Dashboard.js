@@ -2,7 +2,7 @@ import React, {Component} from "react";
 import {ProfileCard} from "../../components";
 import {CardContainer} from "../../shared";
 import {Fade} from "react-reveal";
-import {showNotification} from "../../service-worker/NotificationServiceWorker";
+import { showNotification } from "../../service-worker/NotificationServiceWorker";
 
 class Dashboard extends Component {
   constructor(props) {
@@ -34,7 +34,6 @@ class Dashboard extends Component {
                 avatar={'https://lh3.googleusercontent.com/proxy/wmI2mZVC_AuXL8nxAa6hIjLgdCxB5OhJY9pwu2xp62qAIPx1je0a2Dq_Lt84DG1FcoDdikxLnPqya-9G-lJoObEhWfokzG9FRUcdpZ8fFLAuPmyfl5wTAe7IrKGludfo6-KkqHe_1jB-odBnbtskjSJzi0qD'}
               />
             } 
-            
           />
         </Fade>
       </div>

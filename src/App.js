@@ -45,7 +45,7 @@ class App extends Component {
           <div className="page-container">
             <Switch>
               <Route
-                exact
+                // exact
                 path="/home"
                 render={(props) => (
                   <Dashboard {...props}/>
