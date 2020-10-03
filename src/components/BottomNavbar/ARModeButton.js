@@ -7,7 +7,7 @@ export const ARModeButton = () => {
   return (
     <div className="ar-mode-container">
       <img alt="ar-mode" src={ARModeButtonImage} className="ar-mode-button" onClick={ async () => {
-        const title = "Covictory AR";
+        const title = "Helpers Web AR";
         const options = {
           body: "Yay it works.",
           icon: ARModeButtonImage,

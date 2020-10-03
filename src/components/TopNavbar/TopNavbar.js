@@ -12,7 +12,7 @@ class TopNavbar extends Component {
   render() {
     return (
       <div>
-        <Typography variant="h5" className="title">Covictory AR</Typography>
+        <Typography variant="h5" className="title">Helpers Web AR</Typography>
         <Fade down>
           <div className="top-navbar"/>
         </Fade>
