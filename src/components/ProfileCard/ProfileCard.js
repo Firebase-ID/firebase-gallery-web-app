@@ -1,8 +1,9 @@
 import React, {Component} from "react";
-import {Avatar, Card, Modal} from "antd";
+import {Avatar, Card, Modal, Collapse} from "antd";
 import 'antd/dist/antd.css';
 import { EnvironmentOutlined, EllipsisOutlined, MessageOutlined } from '@ant-design/icons';
 import PositionView from '../PositionView/PositionView';
+import Comments from "../Comments/Comments";
 
 const { Meta } = Card;
 
@@ -10,20 +11,34 @@ class ProfileCard extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      visible: false
+      positionViewVisible: false,
+      commentsVisible: false,
     }
   }
 
-  showModal = () => {
+  showPositionViewModal = () => {
     this.setState({
-    visible: true,
+      positionViewVisible: true,
     });
   };
 
-  hideModal = e => {
+  hidePositionViewModal = e => {
     console.log(e);
     this.setState({
-      visible: false,
+      positionViewVisible: false,
+    });
+  };
+
+  showCommentsModal = () => {
+    this.setState({
+      commentsVisible: true,
+    });
+  };
+
+  hideCommentsModal = e => {
+    console.log(e);
+    this.setState({
+      commentsVisible: false,
     });
   };
 
@@ -39,8 +54,8 @@ class ProfileCard extends Component {
             />
           }
           actions={[
-            <MessageOutlined key="setting" />,
-            <EnvironmentOutlined key="edit" onClick={() => this.showModal()}/>,
+            <MessageOutlined key="setting" onClick={() => this.showCommentsModal()} />,
+            <EnvironmentOutlined key="edit" onClick={() => this.showPositionViewModal()}/>,
             <EllipsisOutlined key="ellipsis"  />
           ]}
         >
@@ -53,11 +68,20 @@ class ProfileCard extends Component {
 
         <Modal 
           title="Position View"
-          visible={this.state.visible}
-          onOk={this.hideModal}
-          onCancel={this.hideModal}
+          visible={this.state.positionViewVisible}
+          onOk={this.hidePositionViewModal}
+          onCancel={this.hidePositionViewModal}
         >
           <PositionView />
+        </Modal>
+
+        <Modal
+          title="Comments"
+          visible={this.state.commentsVisible}
+          onOk={this.hideCommentsModal}
+          onCancel={this.hideCommentsModal}
+        >
+          <Comments />
         </Modal>
       </div>
     )
