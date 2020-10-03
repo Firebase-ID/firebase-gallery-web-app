@@ -12,14 +12,14 @@ export const uiConfig = {
 };
 
 var firebaseConfig = {
-  apiKey: "AIzaSyABG0oOFwwoQxM2zJIKa7W7IyhLRq-49HQ",
-  authDomain: "fir-auth-5d704.firebaseapp.com",
-  databaseURL: "https://fir-auth-5d704.firebaseio.com",
-  projectId: "fir-auth-5d704",
-  storageBucket: "fir-auth-5d704.appspot.com",
-  messagingSenderId: "333101631114",
-  appId: "1:333101631114:web:84f75056a61ce7a3ea8f73",
-  measurementId: "G-LMHM1TB911"
+  apiKey: "AIzaSyCrse7ikICGrFNXNGJ7lwQwPtV4A-6Fzcs",
+  authDomain: "helpers-webar-2.firebaseapp.com",
+  databaseURL: "https://helpers-webar-2.firebaseio.com",
+  projectId: "helpers-webar-2",
+  storageBucket: "helpers-webar-2.appspot.com",
+  messagingSenderId: "390056800913",
+  appId: "1:390056800913:web:0ff8a20f615903dece0530",
+  measurementId: "G-PGB9CV43TF"
 };
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
