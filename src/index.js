@@ -2,16 +2,27 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
-import * as serviceWorker from './serviceWorker';
+import {Notifications} from 'react-push-notification';
+import {BreakpointProvider} from 'react-socks';
+import {BrowserRouter} from "react-router-dom";
+import {CacheServiceWorker, NotificationServiceWorker} from "./service-worker";
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <BreakpointProvider>
+      <Notifications/>
+      <BrowserRouter>
+        <App/>
+      </BrowserRouter>
+    </BreakpointProvider>
   </React.StrictMode>,
   document.getElementById('root')
 );
 
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: https://bit.ly/CRA-PWA
-serviceWorker.unregister();
+
+if ('serviceWorker' in navigator && 'PushManager' in window) {
+  CacheServiceWorker.register();
+  NotificationServiceWorker.register();
+} else {
+  console.log("Sorry, try to update your chrome");
+}
