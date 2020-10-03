@@ -1,8 +1,12 @@
-.profile-card-container {
+/* .profile-card-container {
     width: 100%;
-}
+} */
 
-.profile-card {
+/* .profile-card {
     display: grid;
     place-items: center;
+} */
+
+.meta {
+    text-align: left;
 }
