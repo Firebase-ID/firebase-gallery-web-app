@@ -100,6 +100,7 @@ class App extends Component {
 
           <div className="page-container">
             <Switch>
+
               {!isLoggedIn && !isLoading && (
                 <StyledFirebaseAuth
                   uiConfig={firebase.uiConfig}
@@ -132,6 +133,7 @@ class App extends Component {
                   <NotFound/>
                 )}/>
               )}
+
             </Switch>
           </div>
           <BottomNavbar setPage={this.setPage}/>

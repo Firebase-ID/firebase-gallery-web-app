@@ -1,7 +1,9 @@
 import React, {Component} from "react";
-import {Avatar, Card} from "antd";
+import {Avatar, Card, Modal, Collapse} from "antd";
 import 'antd/dist/antd.css';
-import { EditOutlined, EllipsisOutlined, SettingOutlined } from '@ant-design/icons';
+import { EnvironmentOutlined, EllipsisOutlined, MessageOutlined } from '@ant-design/icons';
+import PositionView from '../PositionView/PositionView';
+import Comments from "../Comments/Comments";
 
 const { Meta } = Card;
 
@@ -9,8 +11,36 @@ class ProfileCard extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      positionViewVisible: false,
+      commentsVisible: false,
     }
   }
+
+  showPositionViewModal = () => {
+    this.setState({
+      positionViewVisible: true,
+    });
+  };
+
+  hidePositionViewModal = e => {
+    console.log(e);
+    this.setState({
+      positionViewVisible: false,
+    });
+  };
+
+  showCommentsModal = () => {
+    this.setState({
+      commentsVisible: true,
+    });
+  };
+
+  hideCommentsModal = e => {
+    console.log(e);
+    this.setState({
+      commentsVisible: false,
+    });
+  };
 
   render() {
     return (
@@ -20,21 +50,39 @@ class ProfileCard extends Component {
           cover={
             <img
               alt="example"
-              src="https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png"
+              src={this.props.image}
             />
           }
           actions={[
-            <SettingOutlined key="setting" />,
-            <EditOutlined key="edit" />,
-            <EllipsisOutlined key="ellipsis" />,
+            <MessageOutlined key="setting" onClick={() => this.showCommentsModal()} />,
+            <EnvironmentOutlined key="edit" onClick={() => this.showPositionViewModal()}/>,
+            <EllipsisOutlined key="ellipsis"  />
           ]}
         >
           <Meta
-            avatar={<Avatar src="icons/192x192.png" />}
-            title="Card title"
-            description="This is the description"
+            avatar={<Avatar src={this.props.avatar} />}
+            title={this.props.title}
+            description={this.props.description}
           />
         </Card>
+
+        <Modal 
+          title="Position View"
+          visible={this.state.positionViewVisible}
+          onOk={this.hidePositionViewModal}
+          onCancel={this.hidePositionViewModal}
+        >
+          <PositionView />
+        </Modal>
+
+        <Modal
+          title="Comments"
+          visible={this.state.commentsVisible}
+          onOk={this.hideCommentsModal}
+          onCancel={this.hideCommentsModal}
+        >
+          <Comments />
+        </Modal>
       </div>
     )
   }
