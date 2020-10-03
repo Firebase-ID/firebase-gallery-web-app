@@ -1,22 +1,78 @@
 import React, {Component} from 'react';
 import './App.css';
 import {Route, Switch} from "react-router-dom";
+import StyledFirebaseAuth from "react-firebaseui/StyledFirebaseAuth"
+import * as firebase from "./services/Firebase"
 import {Loading, Dashboard, Notification} from "./containers";
 import {TopNavbar, Background, BottomNavbar, NotFound} from "./components";
+import {withRouter} from "react-router-dom"
 import {Breakpoint} from "react-socks";
 
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      page: 'home',
-      isLoading: false
+      page: '',
+      isLoading: true,
+      isLoggedIn: false,
+      user: {},
+      userData: {},
     }
   }
 
   componentDidMount = async () => {
-    // const serviceWorker = await serviceWorkerModule.start();
-    // serviceWorkerModule.showLocalNotification('This is title', 'this is the message', serviceWorker);
+    await this.checkIsLoggedIn();
+  };
+
+  checkIsLoggedIn = async () => {
+    await firebase.auth().onAuthStateChanged(async (user) => {
+      if (user) {
+        try {
+          await firebase.db.ref('users').orderByChild('uid').equalTo(user.uid)
+            .on('value', snapshot => {
+              let userData = [];
+
+              if (snapshot.exists()) {
+                snapshot.forEach((snap) => {
+                  userData.push(snap.val())
+                });
+                // speakStart("Welcome to XStream XR");
+              }
+
+              else {
+                userData = [{
+                  uid: user.uid,
+                  displayName: user.displayName,
+                  email: user.email,
+                  photoURL: user.photoURL,
+                }]
+              }
+
+              this.setState({
+                userData: userData[0],
+                user: user,
+                isLoading: false,
+                isLoggedIn: true
+              });
+            })
+        } catch (error) {
+          this.setState({
+            readError: error.message, loadingChats: false,
+            user: {},
+            userData: {},
+            isLoading: false,
+            isLoggedIn: false
+          })
+        }
+      } else {
+        this.setState({
+          user: {},
+          userData: {},
+          isLoading: false,
+          isLoggedIn: false
+        })
+      }
+    })
   };
 
   setPage = (page) => {
@@ -32,7 +88,7 @@ class App extends Component {
   };
 
   render() {
-    const {isLoading} = this.state;
+    const {isLoading, isLoggedIn, userData} = this.state;
     return (
       <div>
 
@@ -44,25 +100,38 @@ class App extends Component {
 
           <div className="page-container">
             <Switch>
-              <Route
-                exact
-                path="/home"
-                render={(props) => (
-                  <Dashboard {...props}/>
-                )}
-              />
+              {!isLoggedIn && !isLoading && (
+                <StyledFirebaseAuth
+                  uiConfig={firebase.uiConfig}
+                  firebaseAuth={firebase.auth()}
+                />
+              )}
 
-              <Route
-                exact
-                path="/notification"
-                render={(props) => (
-                  <Notification {...props}/>
-                )}
-              />
+              {isLoggedIn && !isLoading && (
+                <>
+                  <Route
+                    exact
+                    path="/"
+                    render={(props) => (
+                      <Dashboard {...props}/>
+                    )}
+                  />
 
-              <Route path="*" render={() => (
-                <NotFound/>
-              )}/>
+                  <Route
+                    exact
+                    path="/notification"
+                    render={(props) => (
+                      <Notification {...props}/>
+                    )}
+                  />
+                </>
+              )}
+
+              {!isLoading && (
+                <Route path="*" render={() => (
+                  <NotFound/>
+                )}/>
+              )}
             </Switch>
           </div>
           <BottomNavbar setPage={this.setPage}/>
@@ -78,4 +147,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default withRouter(App);
