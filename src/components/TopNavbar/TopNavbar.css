@@ -1,0 +1,22 @@
+.top-navbar {
+    position: fixed;
+    top: -3.5%;
+    width: 150%;
+    height: 12%;
+    left: 0%;
+    border-radius: 30%;
+    background-color: cornflowerblue;
+    z-index: 1;
+}
+
+.title {
+    color: white;
+    text-align: right;
+    padding-right: 2%;
+    padding-top: 3%;
+    right: 5%;
+    display: grid;
+    position: fixed;
+    place-items: center;
+    z-index: 3;
+}
