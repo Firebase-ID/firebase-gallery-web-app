@@ -10,7 +10,7 @@ class BottomNavbar extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      tabName: "home",
+      tabName: "",
     }
   }
 
@@ -32,7 +32,7 @@ class BottomNavbar extends Component {
 
         <BottomNavigation value={tabName} onChange={this.handleTabChange} className="bottom-navbar-container">
 
-          <BottomNavigationAction label="Home" value="home" icon={<HomeFilled className="bottom-navbar-button"/>}/>
+          <BottomNavigationAction label="Home" value="" icon={<HomeFilled className="bottom-navbar-button"/>}/>
           <BottomNavigationAction/>
           <BottomNavigationAction label="Notification" value="notification"
                                   icon={<MessageFilled className="bottom-navbar-button"/>}/>
