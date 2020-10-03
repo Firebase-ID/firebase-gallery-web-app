@@ -8,21 +8,19 @@ import {BrowserRouter} from "react-router-dom";
 import {CacheServiceWorker, NotificationServiceWorker} from "./service-worker";
 
 ReactDOM.render(
-  <React.StrictMode>
     <BreakpointProvider>
       <Notifications/>
       <BrowserRouter>
         <App/>
       </BrowserRouter>
-    </BreakpointProvider>
-  </React.StrictMode>,
+    </BreakpointProvider>,
   document.getElementById('root')
 );
 
 
 if ('serviceWorker' in navigator && 'PushManager' in window) {
-  CacheServiceWorker.register();
-  NotificationServiceWorker.register();
+  // CacheServiceWorker.register();
+  // NotificationServiceWorker.register();
 } else {
   console.log("Sorry, try to update your chrome");
 }
