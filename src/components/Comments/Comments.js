@@ -1,6 +1,19 @@
 import React, { Component } from "react";
-import { Comment } from "antd";
+import { Comment, Form, Input, Button } from "antd";
 import './Comments.css';
+
+const Editor = () => (
+    <div>
+      <Form.Item>
+        <Input rows={4} />
+      </Form.Item>
+      <Form.Item>
+        <Button htmlType="submit" type="primary">
+          Add Comment
+        </Button>
+      </Form.Item>
+    </div>
+  );
 
 class Comments extends Component {
     constructor(props) {
@@ -40,6 +53,15 @@ class Comments extends Component {
                         datetime={c.datetime}
                     />
                 )}
+                <Comment
+                    avatar={'https://i.pinimg.com/originals/0c/3b/3a/0c3b3adb1a7530892e55ef36d3be6cb8.png'}                    
+                    content={
+                        <Editor
+                        onChange={this.handleChange}
+                        onSubmit={this.handleSubmit}
+                        />
+                    }
+                    />
             </div>
         )
     }
