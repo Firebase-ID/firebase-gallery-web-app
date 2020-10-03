@@ -4,6 +4,7 @@ import 'antd/dist/antd.css';
 import { EnvironmentOutlined, EllipsisOutlined, MessageOutlined } from '@ant-design/icons';
 import PositionView from '../PositionView/PositionView';
 import Comments from "../Comments/Comments";
+import './ProfileCard.css'
 
 const { Meta } = Card;
 
@@ -59,7 +60,8 @@ class ProfileCard extends Component {
             <EllipsisOutlined key="ellipsis"  />
           ]}
         >
-          <Meta
+          <Meta 
+            className="meta"
             avatar={<Avatar src={this.props.avatar} />}
             title={this.props.title}
             description={this.props.description}
