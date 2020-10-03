@@ -28,6 +28,7 @@ class App extends Component {
     await firebase.auth().onAuthStateChanged(async (user) => {
       if (user) {
         try {
+          console.log(user);
           await firebase.db.ref('users').orderByChild('uid').equalTo(user.uid)
             .on('value', snapshot => {
               let userData = [];
@@ -89,6 +90,7 @@ class App extends Component {
 
   render() {
     const {isLoading, isLoggedIn, userData} = this.state;
+    console.log(this.state)
     return (
       <div>
 
@@ -102,10 +104,14 @@ class App extends Component {
             <Switch>
 
               {!isLoggedIn && !isLoading && (
-                <StyledFirebaseAuth
-                  uiConfig={firebase.uiConfig}
-                  firebaseAuth={firebase.auth()}
-                />
+                <div id='firebase-auth'>
+                  <h1>Welcome!</h1>
+                  <h3>Sign in to begin.</h3>
+                  <StyledFirebaseAuth
+                    uiConfig={firebase.uiConfig}
+                    firebaseAuth={firebase.auth()}
+                    />
+                </div>
               )}
 
               {isLoggedIn && !isLoading && (
