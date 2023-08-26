@@ -1,0 +1,117 @@
+.image-item {
+    width: 150px;
+    height: 150px;
+    margin: 20px;
+    transition: transform .2s;
+    animation: append-animate .6s linear;
+}
+
+.image-item:hover {
+    transform: scale(1.1)
+}
+
+.image-visible {
+    opacity: 1;
+}
+
+.image-hidden {
+    opacity: 0;
+}
+
+.selected-image {
+    width: 750px;
+    height: 450px;
+    transition: transform .2s;
+    animation: append-animate .4s linear;
+    margin-bottom: 50px;
+}
+
+.upload-status {
+    position: absolute;
+    color: #fff;
+    align-self: center;
+    z-index: 1;
+    background-color:brown;
+    width: 100%;
+    bottom: 0;
+}
+
+.comment-item {
+    text-align: left;
+    font-size: 15px;
+    margin: 20px;
+    padding: 10px;
+    background-color:lightskyblue;
+    opacity: 80%;
+}
+
+.selected-image-container {
+    text-align: center;
+}
+
+.selected-image-title {
+    font-size: 30px;
+    font-weight: bold;
+    font-style: oblique;
+}
+
+.gallery-container {
+    text-align: left;
+    background-color: azure;
+    width: 90%;
+    margin-left: 5%;
+    margin-top: 20px;
+}
+
+.page-container {
+    text-align: center;
+    background-color:#3399ff;
+    height: 100vh;
+}
+
+@keyframes append-animate {
+	from {
+		transform: scale(0);
+		opacity: 0;
+	}
+	to {
+		transform: scale(1);
+		opacity: 1;	
+	}
+}
+
+.upload-form {
+    text-align: center;
+    padding-top: 2.5%;
+    padding-bottom: 1.5%;
+}
+
+/* Hide the file input using
+opacity */
+[type=file] {
+    position: absolute;
+    filter: alpha(opacity=0);
+    opacity: 0;
+}
+input,
+[type=file] + label {
+  border: 1px solid #CCC;
+  border-radius: 3px;
+  text-align: left;
+  padding: 10px;
+  width: 150px;
+  margin: 0;
+  left: 0;
+  position: relative;
+}
+[type=file] + label {
+  text-align: center;
+  /* Decorative */
+  background: #333;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+}
+[type=file] + label:hover {
+    background: orangered;
+}

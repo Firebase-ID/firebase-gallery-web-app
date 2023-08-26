@@ -1,26 +1,13 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import {Notifications} from 'react-push-notification';
-import {BreakpointProvider} from 'react-socks';
-import {BrowserRouter} from "react-router-dom";
-import {CacheServiceWorker, NotificationServiceWorker} from "./service-worker";
+import React from "react";
+import ReactDOM from "react-dom/client";
+import "./index.css";
+import App from "./App";
+import reportWebVitals from "./reportWebVitals";
 
-ReactDOM.render(
-    <BreakpointProvider>
-      <Notifications/>
-      <BrowserRouter>
-        <App/>
-      </BrowserRouter>
-    </BreakpointProvider>,
-  document.getElementById('root')
-);
+const root = ReactDOM.createRoot(document.getElementById("root"));
+root.render(<App />);
 
-
-if ('serviceWorker' in navigator && 'PushManager' in window) {
-  // CacheServiceWorker.register();
-  // NotificationServiceWorker.register();
-} else {
-  console.log("Sorry, try to update your chrome");
-}
+// If you want to start measuring performance in your app, pass a function
+// to log results (for example: reportWebVitals(console.log))
+// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
+reportWebVitals();
