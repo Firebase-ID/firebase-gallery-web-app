@@ -2,7 +2,7 @@
     width: 150px;
     height: 150px;
     margin: 20px;
-    object-fit: cover;
+    object-fit: contain;
     transition: transform .2s;
     animation: append-animate .6s linear;
 }
@@ -22,7 +22,7 @@
 .selected-image {
     width: 750px;
     height: 450px;
-    object-fit: cover;
+    object-fit: contain;
     transition: transform .2s;
     animation: append-animate .4s linear;
     margin-bottom: 50px;
