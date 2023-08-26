@@ -45,16 +45,30 @@ const GalleryPage = () => {
     </div>
   );
 
-  const renderSelectedImage = () => (
-    <>
-      <p className="selected-image-title">{selectedImage.path}</p>
-      <img
-        src={selectedImage.url}
-        key={selectedImage.id}
-        className="selected-image"
-      />
-    </>
-  );
+  const pickFilename = (directory) => {
+    const splittedWord = directory.split("/");
+    return splittedWord[splittedWord.length - 1];
+  };
+
+  const getFilenameWithoutType = (filename) => {
+    const splittedWord = filename.split(".");
+    return splittedWord[0];
+  };
+
+  const renderSelectedImage = () => {
+    const filename = pickFilename(selectedImage.path);
+    const filenameWithoutType = getFilenameWithoutType(filename);
+    return (
+      <>
+        <p className="selected-image-title">{filenameWithoutType}</p>
+        <img
+          src={selectedImage.url}
+          key={selectedImage.id}
+          className="selected-image"
+        />
+      </>
+    );
+  };
 
   const renderGallery = () => (
     <div className="gallery-container">
@@ -78,8 +92,10 @@ const GalleryPage = () => {
         })}
 
       {isError && <p>Something is not right</p>}
-      {isLoading && (<p>Loading images</p>)}
-      {!isError && !isLoading && imagesURLs.length === 0 && <p>No any images yet</p>}
+      {isLoading && <p>Loading images</p>}
+      {!isError && !isLoading && imagesURLs.length === 0 && (
+        <p>No any images yet</p>
+      )}
     </div>
   );
 
@@ -137,8 +153,8 @@ const GalleryPage = () => {
     };
 
     fetchImages()
-    .catch(() => setIsError(true))
-    .finally(() => setIsLoading(false));
+      .catch(() => setIsError(true))
+      .finally(() => setIsLoading(false));
   }, [comments]);
 
   return (
