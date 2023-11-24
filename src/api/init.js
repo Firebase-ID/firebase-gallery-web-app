@@ -4,13 +4,13 @@ import { getStorage } from "firebase/storage";
 import { getAnalytics } from "firebase/analytics";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyBiD02hCxP-2bFPYHLRGOs_mYF25hHKLnA",
-  authDomain: "qode-8795d.firebaseapp.com",
-  projectId: "qode-8795d",
-  storageBucket: "qode-8795d.appspot.com",
-  messagingSenderId: "628570874612",
-  appId: "1:628570874612:web:1782c08b5435e39574f4a1",
-  measurementId: "G-7MBD7TWGXY"
+  apiKey: "AIzaSyBCLLQ_Qy5bfAwOOzLxiC0Y8nZB4R27a3k",
+  authDomain: "live-demo-firebase.firebaseapp.com",
+  projectId: "live-demo-firebase",
+  storageBucket: "live-demo-firebase.appspot.com",
+  messagingSenderId: "89267697560",
+  appId: "1:89267697560:web:b5180668bed6be7a0d9ded",
+  measurementId: "G-TYFCHQ4DYH"
 };
 
 const initializeFirestore = (app) => {

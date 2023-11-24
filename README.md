@@ -7,7 +7,7 @@ This is a demonstration of a Gallery media platform where you can add new photos
 ![alt text](Architecture.png)
 
 ## Demo
-https://qode-8795d.web.app/
+https://live-demo-firebase.web.app/
 
 ## Tech Stacks
 - React Js
